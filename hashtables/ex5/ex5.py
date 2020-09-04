@@ -1,24 +1,26 @@
 
-file_cache = {}
-
 def finder(files, queries):
-    """
-    YOUR CODE HERE
-    """
-    for file in files:
-        file_cache[file] = []
+    # 
+    files_found = []
 
-    keys = list(file_cache.keys())
+    directory = {}
+
+    for file in files:
+
+        parts = file.split('/')
+
+        filename = parts[-1]
+
+        if filename not in directory:
+            directory[filename] = []
+
+        directory[filename].append(file)
 
     for query in queries:
-        for key in keys:
-            if query in key:
-                file_cache[key].append(query)
+        if query in directory:
+            files_found.extend(directory[query])
 
-    result = [key for key in file_cache if len(file_cache[key]) > 0]
-
-    return result
-
+    return files_found
 
 if __name__ == "__main__":
     files = [
