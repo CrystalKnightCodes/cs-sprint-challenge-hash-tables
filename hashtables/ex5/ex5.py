@@ -1,15 +1,26 @@
-# Your code here
-
-
 
 def finder(files, queries):
-    """
-    YOUR CODE HERE
-    """
-    # Your code here
+    # 
+    files_found = []
 
-    return result
+    directory = {}
 
+    for file in files:
+
+        parts = file.split('/')
+
+        filename = parts[-1]
+
+        if filename not in directory:
+            directory[filename] = []
+
+        directory[filename].append(file)
+
+    for query in queries:
+        if query in directory:
+            files_found.extend(directory[query])
+
+    return files_found
 
 if __name__ == "__main__":
     files = [
