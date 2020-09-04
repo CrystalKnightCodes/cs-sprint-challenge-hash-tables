@@ -1,17 +1,30 @@
 def intersection(arrays):
     cache = {}
-    result = []
 
-
+    # get shortest array in arrays
+    shortest_array = []
+    if len(arrays) > 0:
+        shortest_array = arrays[0]
 
     for array in arrays:
-        for number in array:
-            if number in cache:
-                cache[number] += 1
-                if number not in result:
-                    result.append(number)
-            else:
-                cache[number] = 1
+        if len(array) < len(shortest_array):
+            shortest_array = array
+   
+    # populate cache, based on the shortest array
+    for number in shortest_array:
+        cache[number] = 1
+
+    # find repeating numbers
+    for array in arrays:
+        if array is not shortest_array:
+            new_cache = {}
+            for number in array:
+                if number in cache:
+                    new_cache[number] = 1
+            
+            cache = new_cache
+            
+    result = list(cache.keys())
 
     return result
 
