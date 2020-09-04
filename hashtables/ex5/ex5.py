@@ -1,12 +1,21 @@
-# Your code here
 
-
+file_cache = {}
 
 def finder(files, queries):
     """
     YOUR CODE HERE
     """
-    # Your code here
+    for file in files:
+        file_cache[file] = []
+
+    keys = list(file_cache.keys())
+
+    for query in queries:
+        for key in keys:
+            if query in key:
+                file_cache[key].append(query)
+
+    result = [key for key in file_cache if len(file_cache[key]) > 0]
 
     return result
 
