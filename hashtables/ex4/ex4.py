@@ -1,9 +1,13 @@
 def has_negatives(a):
-    """
-    YOUR CODE HERE
-    """
-    # Your code here
+    cache = {}
+    result = []
 
+    for number in a:
+        cache[number] = 1
+        if number != 0 and -number in cache:
+            result.append(abs(number))
+    
+    print(f"The numbers with negatives are: {result}")        
     return result
 
 
