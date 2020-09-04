@@ -2,24 +2,26 @@ def has_negatives(a):
     cache = {}
     result = []
  
-    for number in a:
-        cache[number] = 1
-        if number != 0 and -number in cache:
-            result.append(abs(number))
-   
-#    Attempt at refactoring to make better use of the hash table.  Ran out of time to complete.
     # for number in a:
-    #     if number > 0:
-    #         cache[number] = 1
-    #     elif number < 0:
-    #         cache[number] = 2
-    #         # negatives.append(number)
+    #     cache[number] = 1
+    #     if number != 0 and -number in cache:
+    #         result.append(abs(number))
+   
+#    Refactored to make better use of the hash table.  
+    cache['negative'] = []
+    cache['positive'] = []
     
-    # positives = list(cache.keys())[list(cache.values()).index(1)]
+    for number in a:
+        if number > 0:
+            cache['positive'].append(number)
+
+        elif number < 0:
+                cache['negative'].append(number) 
+
  
-    # for number in positives:
-    #     if -number in cache:
-    #         result.append(number)
+    for number in cache['negative']:
+        if -number in cache['positive']:
+            result.append(-number)
 
     return result
 
